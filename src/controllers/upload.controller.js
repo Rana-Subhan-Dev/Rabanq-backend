@@ -9,9 +9,10 @@
  *   DELETE /api/upload           → Delete a file from S3 by URL
  */
 
-import { uploadFileToS3, deleteFileFromS3 } from '../utils/s3.util.js';
+// import { uploadFileToS3, deleteFileFromS3 } from '../utils/s3.util.js';
+import { deleteFromS3, upload } from '../config/s3.js';
 import ActivityLog from '../models/ActivityLog.model.js';
-import logger from '../utils/logger.util.js';
+//import logger from '../utils/logger.util.js';
 
 // ─────────────────────────────────────────────
 // @desc    Upload a file to AWS S3
@@ -30,7 +31,7 @@ export const uploadFile = async (req, res, next) => {
     const { folder = 'general' } = req.body;
 
     // Upload to S3 — returns the public URL of the uploaded file
-    const fileUrl = await uploadFileToS3({
+    const fileUrl = await upload({
       file: req.file,
       folder: `rabanq/${folder}`,
       userId: req.user._id.toString(),
@@ -71,7 +72,7 @@ export const deleteFile = async (req, res, next) => {
       });
     }
 
-    await deleteFileFromS3(fileUrl);
+    await deleteFromS3(fileUrl);
 
     await ActivityLog.create({
       user: req.user._id,

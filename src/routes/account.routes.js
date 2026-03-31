@@ -13,7 +13,7 @@ import {
   getAccountById,
   updateAccountStatus,
 } from '../controllers/account.controller.js';
-import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.middleware.js';
 import { updateAccountStatusRules } from '../middleware/validators/account.validator.js';
 
@@ -37,4 +37,4 @@ router.get('/:id', restrictTo('admin'), getAccountById);
 // PUT /api/accounts/:id/status  (admin only)
 router.put('/:id/status', restrictTo('admin'), updateAccountStatusRules, validate, updateAccountStatus);
 
-export default router;
+export default router

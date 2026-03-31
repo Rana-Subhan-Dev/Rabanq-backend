@@ -1,7 +1,10 @@
-const ActivityLog = require('../models/ActivityLog.model');
-const logger = require('../config/logger');
+// const ActivityLog = require('../models/ActivityLog.model');
+// const logger = require('../config/logger');
 
-exports.logActivity = async ({
+import logger from "../config/logger.js";
+import ActivityLog from "../models/ActivityLog.model.js";
+
+export const logActivity = async ({
   userId = null,
   action,
   category,
@@ -32,3 +35,5 @@ exports.logActivity = async ({
     logger.error(`Failed to log activity: ${err.message}`);
   }
 };
+
+

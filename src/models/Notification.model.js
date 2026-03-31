@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const notificationSchema = new mongoose.Schema({
   user:     { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -17,4 +17,7 @@ notificationSchema.index({ user: 1, createdAt: -1 });
 // Auto-delete notifications after 30 days
 notificationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 2592000 });
 
-module.exports = mongoose.model('Notification', notificationSchema);
+
+const Notification = mongoose.model('Notification', notificationSchema);
+
+export default Notification;

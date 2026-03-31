@@ -1,5 +1,5 @@
-const logger = require('../config/logger');
-const AppError = require('../utils/AppError');
+import logger from '../config/logger.js';
+import AppError from '../utils/AppError.js';
 
 const handleCastErrorDB = (err) => new AppError(`Invalid ${err.path}: ${err.value}`, 400);
 const handleDuplicateFieldsDB = (err) => {
@@ -33,7 +33,7 @@ const sendErrorProd = (err, res) => {
   }
 };
 
-exports.errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
   logger.error(`${err.statusCode} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
@@ -51,6 +51,6 @@ exports.errorHandler = (err, req, res, next) => {
   }
 };
 
-exports.notFound = (req, res, next) => {
+export const notFound = (req, res, next) => {
   next(new AppError(`Route ${req.originalUrl} not found`, 404));
 };

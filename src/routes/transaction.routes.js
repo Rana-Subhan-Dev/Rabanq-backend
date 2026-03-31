@@ -14,7 +14,7 @@ import {
   getAllTransactions,
   updateTransactionStatus,
 } from '../controllers/transaction.controller.js';
-import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.middleware.js';
 import {
   createTransactionRules,
@@ -45,4 +45,4 @@ router.get('/', restrictTo('admin'), getAllTransactions);
 // PUT  /api/transactions/:id/status  (admin only)
 router.put('/:id/status', restrictTo('admin'), updateTransactionStatusRules, validate, updateTransactionStatus);
 
-export default router;
+export default router

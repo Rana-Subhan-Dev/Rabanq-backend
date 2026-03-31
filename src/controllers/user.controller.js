@@ -13,7 +13,7 @@
 import User from '../models/User.model.js';
 import ActivityLog from '../models/ActivityLog.model.js';
 import bcrypt from 'bcryptjs';
-import logger from '../utils/logger.util.js';
+//import logger from '../utils/logger.util.js';
 
 // ─────────────────────────────────────────────
 // @desc    Get current authenticated user profile

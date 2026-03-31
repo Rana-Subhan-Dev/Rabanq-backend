@@ -15,9 +15,9 @@ import Account from '../models/Account.model.js';
 import ActivityLog from '../models/ActivityLog.model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET, JWT_EXPIRES_IN, JWT_REFRESH_SECRET, JWT_REFRESH_EXPIRES_IN } from '../config/constants.js';
-import { generateAccessToken, generateRefreshToken } from '../utils/token.util.js';
-import logger from '../utils/logger.util.js';
+//import { JWT_SECRET, JWT_EXPIRES_IN, JWT_REFRESH_SECRET, JWT_REFRESH_EXPIRES_IN } from '../config/constants.js';
+//import { generateAccessToken, generateRefreshToken } from '../utils/token.util.js';
+//import logger from '../utils/logger.util.js';
 
 // ─────────────────────────────────────────────
 // @desc    Register a new user + auto-create account

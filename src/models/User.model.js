@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema({
   firstName: { type: String, required: [true, 'First name is required'], trim: true, maxlength: 50 },
@@ -101,11 +101,11 @@ userSchema.methods.resetLoginAttempts = async function () {
   await this.save();
 };
 
-// Indexes
-userSchema.index({ email: 1 });
-userSchema.index({ phone: 1 });
+// Indexes (no duplicates)
 userSchema.index({ kycStatus: 1 });
 userSchema.index({ role: 1 });
 userSchema.index({ lastActivity: 1 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+export default User;

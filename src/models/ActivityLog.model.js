@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const activityLogSchema = new mongoose.Schema({
   user:        { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
@@ -27,4 +27,6 @@ activityLogSchema.index({ createdAt: -1 });
 // Auto-delete logs after 90 days
 activityLogSchema.index({ createdAt: 1 }, { expireAfterSeconds: 7776000 });
 
-module.exports = mongoose.model('ActivityLog', activityLogSchema);
+const ActivityLog = mongoose.model('ActivityLog', activityLogSchema);
+
+export default ActivityLog

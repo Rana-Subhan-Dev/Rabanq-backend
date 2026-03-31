@@ -10,7 +10,7 @@
  */
 
 import ActivityLog from '../models/ActivityLog.model.js';
-import logger from '../utils/logger.util.js';
+//import logger from '../utils/logger.util.js';
 
 // ─────────────────────────────────────────────
 // @desc    Get current user's activity history

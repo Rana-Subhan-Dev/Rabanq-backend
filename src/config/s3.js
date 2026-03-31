@@ -1,10 +1,13 @@
-const { S3Client, DeleteObjectCommand, GetObjectCommand } = require('@aws-sdk/client-s3');
-const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-const AppError = require('../utils/AppError');
+import { S3Client, DeleteObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import multer from 'multer';
+import multerS3 from 'multer-s3';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
+import dotenv from 'dotenv';
+import AppError from '../utils/AppError.js';
+
+dotenv.config();
 
 const s3Client = new S3Client({
   region: process.env.AWS_REGION,
@@ -14,11 +17,8 @@ const s3Client = new S3Client({
   }
 });
 
-// Allowed file types for KYC documents
-const allowedMimeTypes = [
-  'image/jpeg', 'image/png', 'image/jpg',
-  'application/pdf'
-];
+// Allowed file types
+const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
 
 const fileFilter = (req, file, cb) => {
   if (allowedMimeTypes.includes(file.mimetype)) {
@@ -28,6 +28,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+// Multer-S3 upload
 const upload = multer({
   storage: multerS3({
     s3: s3Client,
@@ -44,7 +45,7 @@ const upload = multer({
     }
   }),
   fileFilter,
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB
+  limits: { fileSize: 10 * 1024 * 1024 }
 });
 
 // Delete file from S3
@@ -56,7 +57,7 @@ const deleteFromS3 = async (key) => {
   await s3Client.send(command);
 };
 
-// Get presigned URL for secure access
+// Get presigned URL
 const getPresignedUrl = async (key, expiresIn = 3600) => {
   const command = new GetObjectCommand({
     Bucket: process.env.AWS_S3_BUCKET,
@@ -65,4 +66,5 @@ const getPresignedUrl = async (key, expiresIn = 3600) => {
   return await getSignedUrl(s3Client, command, { expiresIn });
 };
 
-module.exports = { s3Client, upload, deleteFromS3, getPresignedUrl };
+// ✅ Export using ESM
+export { s3Client, upload, deleteFromS3, getPresignedUrl };

@@ -1,13 +1,13 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User.model');
-const Session = require('../models/Session.model');
-const AppError = require('../utils/AppError');
-const { logActivity } = require('../utils/logActivity');
-const catchAsync = require('../utils/catchAsync');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.model.js';
+import Session from '../models/Session.model.js';
+import AppError from '../utils/AppError.js';
+import { logActivity } from '../utils/logActivity.js';
+import catchAsync from '../utils/catchAsync.js';
 
 const INACTIVITY_TIMEOUT = (parseInt(process.env.INACTIVITY_TIMEOUT_MINUTES) || 15) * 60 * 1000;
 
-exports.protect = catchAsync(async (req, res, next) => {
+export const protect = catchAsync(async (req, res, next) => {
   let token;
 
   if (req.headers.authorization?.startsWith('Bearer')) {
@@ -58,7 +58,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-exports.restrictTo = (...roles) => {
+export const restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(new AppError('You do not have permission to perform this action.', 403));

@@ -16,7 +16,7 @@ import Transaction from '../models/Transaction.model.js';
 import Account from '../models/Account.model.js';
 import ActivityLog from '../models/ActivityLog.model.js';
 import mongoose from 'mongoose';
-import logger from '../utils/logger.util.js';
+//import logger from '../utils/logger.util.js';
 
 // ─────────────────────────────────────────────
 // @desc    Create a new transaction (transfer funds)

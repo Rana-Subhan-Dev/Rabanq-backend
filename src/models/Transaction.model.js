@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+import mongoose from 'mongoose';
+//const { v4: uuidv4 } = require('uuid');
 
 const transactionSchema = new mongoose.Schema({
   reference:   { type: String, unique: true, default: () => `TXN-${uuidv4().split('-')[0].toUpperCase()}` },
@@ -62,4 +62,6 @@ transactionSchema.index({ status: 1 });
 transactionSchema.index({ type: 1 });
 transactionSchema.index({ createdAt: -1 });
 
-module.exports = mongoose.model('Transaction', transactionSchema);
+const Transaction = mongoose.model('Transaction', transactionSchema);
+
+export default Transaction;

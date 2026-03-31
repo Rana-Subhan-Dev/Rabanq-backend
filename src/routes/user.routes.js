@@ -12,7 +12,7 @@ import {
   changePassword,
   deleteAccount,
 } from '../controllers/user.controller.js';
-import { protect } from '../middleware/auth.middleware.js';
+import { protect } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.middleware.js';
 import {
   updateProfileRules,
@@ -36,4 +36,4 @@ router.put('/me/change-password', changePasswordRules, validate, changePassword)
 // DELETE /api/users/me
 router.delete('/me', deleteAccount);
 
-export default router;
+export default router

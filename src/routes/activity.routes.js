@@ -11,7 +11,7 @@ import {
   getMyActivity,
   getAllActivity,
 } from '../controllers/activity.controller.js';
-import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.js';
 
 const router = Router();
 
@@ -23,4 +23,4 @@ router.get('/me', getMyActivity);
 // GET /api/activity   (admin only)
 router.get('/', restrictTo('admin', 'support'), getAllActivity);
 
-export default router;
+export default router

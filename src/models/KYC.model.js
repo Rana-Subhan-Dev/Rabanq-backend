@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const documentSchema = new mongoose.Schema({
   type:        { type: String, enum: ['national_id', 'passport', 'drivers_license', 'proof_of_address', 'selfie'], required: true },
@@ -55,4 +55,6 @@ kycSchema.index({ user: 1 });
 kycSchema.index({ status: 1 });
 kycSchema.index({ submittedAt: -1 });
 
-module.exports = mongoose.model('KYC', kycSchema);
+const KYC = mongoose.model('KYC', kycSchema);
+
+export default KYC;

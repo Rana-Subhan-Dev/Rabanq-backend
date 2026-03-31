@@ -15,7 +15,7 @@ import {
   updateUserStatus,
   deleteUser,
 } from '../controllers/admin.controller.js';
-import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.middleware.js';
 import {
   updateUserRoleRules,
@@ -45,4 +45,4 @@ router.put('/users/:id/status', updateUserStatusRules, validate, updateUserStatu
 // DELETE /api/admin/users/:id
 router.delete('/users/:id', deleteUser);
 
-export default router;
+export default router

@@ -1,7 +1,9 @@
-const app = require('./app');
-const connectDB = require('./config/database');
-const logger = require('./config/logger');
-require('dotenv').config();
+import app from './app.js';
+import connectDB from './config/database.js';
+import logger from './config/logger.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
@@ -23,5 +25,3 @@ process.on('uncaughtException', (err) => {
   logger.error(`Uncaught Exception: ${err.message}`);
   process.exit(1);
 });
-
-module.exports = server;

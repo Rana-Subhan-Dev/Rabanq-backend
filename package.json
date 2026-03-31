@@ -2,6 +2,7 @@
   "name": "rabanq-backend",
   "version": "1.0.0",
   "description": "Rabanq Fintech Backend API",
+    "type": "module",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User.model');
+import jwt from 'jsonwebtoken';
+import User  from '../models/User.model.js';
 
-exports.activityTracker = async (req, res, next) => {
+export const activityTracker = async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
     if (token) {

@@ -15,7 +15,7 @@ import {
   getKYCById,
   reviewKYC,
 } from '../controllers/kyc.controller.js';
-import { protect, restrictTo } from '../middleware/auth.middleware.js';
+import { protect, restrictTo } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.middleware.js';
 import { submitKYCRules, reviewKYCRules } from '../middleware/validators/kyc.validator.js';
 
@@ -46,4 +46,4 @@ router.get('/:id', restrictTo('admin', 'support'), getKYCById);
 // PUT  /api/kyc/:id/review  (admin only)
 router.put('/:id/review', restrictTo('admin'), reviewKYCRules, validate, reviewKYC);
 
-export default router;
+export default router

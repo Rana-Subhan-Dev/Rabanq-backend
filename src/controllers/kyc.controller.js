@@ -16,7 +16,7 @@
 import KYC from '../models/KYC.model.js';
 import User from '../models/User.model.js';
 import ActivityLog from '../models/ActivityLog.model.js';
-import logger from '../utils/logger.util.js';
+//import logger from '../utils/logger.util.js';
 
 // ─────────────────────────────────────────────
 // @desc    Submit KYC documents for verification

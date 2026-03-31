@@ -13,7 +13,7 @@ import {
   logout,
   refreshToken,
 } from '../controllers/auth.controller.js';
-import { protect } from '../middleware/auth.middleware.js';
+import { protect } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.middleware.js';
 import { registerRules, loginRules, refreshTokenRules } from '../middleware/validators/auth.validator.js';
 
@@ -35,4 +35,4 @@ router.post('/refresh-token', refreshTokenRules, validate, refreshToken);
 // POST /api/auth/logout  (requires valid access token)
 router.post('/logout', protect, logout);
 
-export default router;
+export default router

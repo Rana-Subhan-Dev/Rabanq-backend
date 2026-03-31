@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const sessionSchema = new mongoose.Schema({
   user:         { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -13,9 +13,11 @@ const sessionSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Auto-delete expired sessions
+// Indexes
 sessionSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 sessionSchema.index({ user: 1 });
 sessionSchema.index({ refreshToken: 1 });
 
-module.exports = mongoose.model('Session', sessionSchema);
+const Session = mongoose.model('Session', sessionSchema);
+
+export default Session;

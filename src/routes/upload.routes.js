@@ -8,7 +8,7 @@
 
 import { Router } from 'express';
 import { uploadFile, deleteFile } from '../controllers/upload.controller.js';
-import { protect } from '../middleware/auth.middleware.js';
+import { protect } from '../middleware/auth.js';
 import { uploadMiddleware } from '../middleware/upload.middleware.js';
 
 const router = Router();
@@ -22,4 +22,4 @@ router.post('/', uploadMiddleware.single('file'), uploadFile);
 // DELETE /api/upload
 router.delete('/', deleteFile);
 
-export default router;
+export default router

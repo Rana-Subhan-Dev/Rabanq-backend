@@ -1,5 +1,6 @@
-const winston = require('winston');
-const path = require('path');
+import winston from "winston";
+import path from "path"
+
 
 const levels = {
   error: 0, warn: 1, info: 2, http: 3, debug: 4
@@ -41,4 +42,4 @@ const logger = winston.createLogger({
   transports
 });
 
-module.exports = logger;
+export default logger;

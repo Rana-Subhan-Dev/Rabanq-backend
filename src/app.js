@@ -1,16 +1,18 @@
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const morgan = require('morgan');
-const compression = require('compression');
-const mongoSanitize = require('express-mongo-sanitize');
-const rateLimit = require('express-rate-limit');
-require('dotenv').config();
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import morgan from 'morgan';
+import compression from 'compression';
+import mongoSanitize from 'express-mongo-sanitize';
+import rateLimit from 'express-rate-limit';
+import dotenv from 'dotenv';
 
-const routes = require('./routes/index');
-const { errorHandler, notFound } = require('./middleware/errorHandler');
-const { activityTracker } = require('./middleware/activityTracker');
-const logger = require('./config/logger');
+import routes from './routes/index.js';
+import { errorHandler, notFound } from './middleware/errorHandler.js';
+import { activityTracker } from './middleware/activityTracker.js';
+import logger from './config/logger.js';
+
+dotenv.config();
 
 const app = express();
 
@@ -32,6 +34,7 @@ const limiter = rateLimit({
   max: parseInt(process.env.RATE_LIMIT_MAX) || 100,
   message: { success: false, message: 'Too many requests, please try again later.' }
 });
+
 app.use('/api/', limiter);
 
 // Body Parsing
@@ -44,7 +47,7 @@ app.use(morgan('combined', {
   stream: { write: (message) => logger.http(message.trim()) }
 }));
 
-// Activity Tracker (inactivity logout)
+// Activity Tracker
 app.use(activityTracker);
 
 // Health Check
@@ -64,4 +67,4 @@ app.use('/api/v1', routes);
 app.use(notFound);
 app.use(errorHandler);
 
-module.exports = app;
+export default app;

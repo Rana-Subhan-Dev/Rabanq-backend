@@ -17,7 +17,7 @@ import Account from '../models/Account.model.js';
 import Transaction from '../models/Transaction.model.js';
 import KYC from '../models/KYC.model.js';
 import ActivityLog from '../models/ActivityLog.model.js';
-import logger from '../utils/logger.util.js';
+//import logger from '../utils/logger.util.js';
 
 // ─────────────────────────────────────────────
 // @desc    Get platform dashboard statistics
